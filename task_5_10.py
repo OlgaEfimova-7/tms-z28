@@ -25,4 +25,4 @@ for i in list_of_trains:
     time_of_departure = datetime(2020, 3, 4, int(list_of_departure_time[0]), int(list_of_departure_time[2]))
     difference = time_of_arrival-time_of_departure
     if difference > timedelta(0, 7*60*60+20*60):
-        print(i['Number of the train'])
+        print(i)
