@@ -1,4 +1,4 @@
-from Lesson12.task_12_2_classes import Circle, Triangle, Square, Point
+from tms_21.task_12_2_classes import Circle, Triangle, Square, Point
 
 circle = Circle(Point(0, 0), 3)
 triangle = Triangle(Point(0, 0), Point(3, 0), Point(3, 3))
