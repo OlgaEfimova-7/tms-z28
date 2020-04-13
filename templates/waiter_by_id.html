@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+body
+    {
+        background: url('/static/change_background.jpg') no-repeat;
+    }
+</style>
+<body>
+    <h1>First Name: {{ a.first_name }}</h1>
+    <h2>Last Name: {{ a.last_name }}</h2>
+    <h2>Email: {{ a.email }}</h2>
+    <h2>Address: {{ a.address }} </h2>
+    <h2>Salary: {{ a.salary }} </h2>
+    <h2>Work Experience: {{ a.work_experience }} </h2>
+
+    <form>
+        <input type="button" value="delete waiter" onclick='location.href="http://127.0.0.1:5000/waiter/{{ a.waiter_id }}/delete"'>
+        <input type="button" value="make changes" onclick='location.href="http://127.0.0.1:5000/waiter/{{ a.waiter_id }}/change"'>
+    </form>
+</body>
+</html>

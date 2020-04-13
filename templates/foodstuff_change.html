@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+body
+    {
+        background: url('/static/change_background.jpg') no-repeat;
+    }
+</style>
+<body>
+<form action="http://127.0.0.1:5000/foodstuff/{{ a.foodstuff_id }}/change/success" method="post">
+    <h1>Name of foodstuff: <input type="text" name="name_of_foodstuff" value="{{ a.name_of_foodstuff }}"></h1>
+    <h1>Category: <input type="text" name="category" value="{{ a.category }}"></h1>
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>

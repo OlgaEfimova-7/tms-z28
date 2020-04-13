@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+body
+    {
+        background: url('/static/change_background.jpg') no-repeat;
+    }
+</style>
+<body>
+    <h1>Order date: {{ a.order_date }}</h1>
+    <h2>Time of order: {{ a.time_of_order }}</h2>
+    <h2>Order price: {{ a.order_price }}</h2>
+    <h2>Service_quality_assessment: {{ a.service_quality_assessment }} </h2>
+    <h2>Dishes:</h2>
+    {% for i in  a.dishes%}
+    <li>
+        <ol>
+    <h3>{{ i.dish }}</h3>
+        </ol>
+    </li>
+        {% endfor %}
+
+    <form>
+        <input type="button" value="delete order" onclick='location.href="http://127.0.0.1:5000/order/{{ a.order_id }}/delete"'>
+        <input type="button" value="make changes" onclick='location.href="http://127.0.0.1:5000/order/{{ a.order_id }}/change"'>
+    </form>
+</body>
+</html>

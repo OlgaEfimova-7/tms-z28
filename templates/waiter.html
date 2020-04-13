@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+     body
+    {
+        background: url('/static/change_bac.jpg') no-repeat;
+    }
+    table, th, td {
+            border: 2px solid black;
+        }
+        th, td {
+            padding: 10px; color: black;
+        }
+</style>
+<body>
+<h1>Waiters</h1>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Salary</th>
+        <th>Work experience</th>
+        <th>More information</th>
+    </tr>
+    {% for i in a%}
+    <tr>
+      <td>{{i.first_name}}</td>
+      <td>{{i.last_name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.address}}</td>
+      <td>{{i.salary}}</td>
+      <td>{{i.work_experience}}</td>
+        <td><a href = http://127.0.0.1:5000/waiter/{{i.waiter_id}}>Click here</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

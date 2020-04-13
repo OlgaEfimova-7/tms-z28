@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+     body
+    {
+        background: url('/static/change_bac.jpg') no-repeat;
+    }
+    table, th, td {
+            border: 2px solid black;
+        }
+        th, td {
+            padding: 10px; color: black;
+        }
+</style>
+<body>
+<h1>     Orders</h1>
+<table>
+    <tr>
+        <th>Order date</th>
+        <th>Time of order</th>
+        <th>Order price</th>
+        <th>Service quality assessment</th>
+        <th>More information</th>
+    </tr>
+    {% for i in a%}
+    <tr>
+      <td>{{i.order_date}}</td>
+      <td>{{i.time_of_order}}</td>
+      <td>{{i.order_price}}</td>
+      <td>{{i.service_quality_assessment}}</td>
+        <td><a href = http://127.0.0.1:5000/order/{{i.order_id}}>Click here</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
