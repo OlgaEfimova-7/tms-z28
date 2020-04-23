@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+body
+    {
+        background: url({% static "change_background.jpg" %}) no-repeat;
+    }
+</style>
+<body>
+    <h1>Name of Foodstuff: {{ foodstuff.name_of_foodstuff }}</h1>
+    <h2>Category: {{ foodstuff.category }}</h2>
+    <h2>Dishes which contain product: </h2>
+            {% for i in  foodstuff.dishes.all%}
+    <li>
+        <ol>
+    <h3>{{ i.dish }}</h3>
+        </ol>
+    </li>
+        {% endfor %}
+
+    <form>
+        <input type="button" value="delete foodstuff" onclick='location.href="http://127.0.0.1:8000/foodstuff/{{ foodstuff.id }}/delete"'>
+        <input type="button" value="make changes" onclick='location.href="http://127.0.0.1:8000/foodstuff/{{ foodstuff.id }}/change"'>
+    </form>
+</body>
+</html>
