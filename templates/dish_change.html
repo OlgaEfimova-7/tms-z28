@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+body
+    {
+        background: url({% static "change_background.jpg" %}) no-repeat;t;
+    }
+</style>
+<body>
+<form action="http://127.0.0.1:8000/dish/{{ dish.id }}/change/success" method="post">
+    {% csrf_token %}
+    <h1>Dish: <input type="text" name="dish" value="{{ dish.dish }}"></h1>
+    <h1>Price: <input type="text" name="price" value="{{ dish.price }}"></h1>
+    <h1>Weight: <input type="text" name="weight_grams" value="{{ dish.weight_grams }}"></h1>
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>

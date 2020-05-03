@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<style>
+body{
+    background: url({% static "restaurant.jpg" %}) no-repeat;
+    background-size: cover}
+input[type=button]
+{color: darkgreen;
+    width: 40%;
+    height: 60px;
+    display: block;
+    margin: 5% auto;
+    font-size: 20px;
+    background-color: antiquewhite;
+    font-style: oblique
+}
+</style>
+  <body>
+       <form action = "http://localhost:5000/result" method = "GET">
+           <input type="button" value="Restaurant menu" onclick='location.href="http://127.0.0.1:8000/dish"'>
+            <input type="button" value="Information about Waiters" onclick='location.href="http://127.0.0.1:8000/waiter"'>
+            <input type="button" value="Information about delivery" onclick='location.href="http://127.0.0.1:8000/delivery"'>
+            <input type="button" value="Information about foodstuff" onclick='location.href="http://127.0.0.1:8000/foodstuff"'>
+            <input type="button" value="Information about orders" onclick='location.href="http://127.0.0.1:8000/order"'>
+
+       </form>
+  </body>
+</html>
