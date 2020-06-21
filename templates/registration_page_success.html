@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Успешная регистрация</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'registration_page_success.css' %}"  >
+</head>
+<body>
+    <div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+    </div>
+    <div class="parent">
+        <div class="child">
+            <img src="{% static "/Images/photodraw.ru-41030.png" %}"
+                 alt="success" class="success_picture">
+        </div>
+        <div class="child">
+            <div class="form_inside">
+                <h3>Регистрация прошла успешно</h3>
+            </div>
+        </div>
+    </div>
+    <form action="/log-in">
+        <input type="submit" value="Войти в личный кабинет">
+    </form>
+</body>
+</html>

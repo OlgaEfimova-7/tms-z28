@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" type="text/css" href="{% static 'writing_of_expenses.css' %}"  >
+    <title>Title</title>
+</head>
+<body>
+<div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a href="/consumer-expenses/">Загрузка чека</a>
+            <a class="active" href="/consumer-expenses-manually/">Запись расходов</a>
+            <a href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+</div>
+<div class="message">
+{#<div class="form">#}
+    <h4>
+        Расходы успешно сохранены!
+    </h4>
+{#</div>#}
+</div>
+<div class="message">
+<div class="button">
+    <input type="button" value="Внести еще данные о расходах"
+           onclick='location.href="/consumer-expenses-manually/"' class="button_red">
+</div>
+<div class="button">
+    <input type="button" value="Вернуться в личный кабинет"
+           onclick='location.href="/personal-account/"' class="button_grey">
+</div>
+</div>
+</body>
+</html>

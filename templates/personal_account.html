@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'personal_account.css' %}"  >
+</head>
+<body>
+    <div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a class="active" href="/personal-account/">Личный кабинет</a>
+            <a href="/consumer-expenses/">Загрузка чека</a>
+            <a href="/consumer-expenses-manually/">Запись расходов</a>
+            <a href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+    </div>
+        <img src="{% static "/Images/iconfinder_profile_3018530.png" %}" alt="icon_logo" class="icon_logo">
+        <div class="form">
+            <div>{{ user.first_name }}</div>
+{#            <div>Personal finance management and analytics</div>#}
+        </div>
+    <div class="parent2">
+    <div class="child2">
+        <img src="{% static "/Images/photodraw.ru-85114.png" %}"
+             alt="statistic_img" class="statistic_img">
+        <div class="button">
+               <input type="button" value="Просмотреть статистику расходов"
+                      onclick='location.href="/consumer-statistics/"' class="button_green">
+        </div>
+    </div>
+    <div class="child2">
+        <img src="{% static "/Images/photodraw.ru-91513.png" %}"
+             alt="wallet_img" class="wallet_img">
+        <div class="button">
+               <input type="button" value="Загрузить чек "
+               onclick='location.href="/consumer-expenses/"' class="button_red">
+        </div>
+        <div class="button">
+               <input type="button" value="Внести данные о расходах вручную"
+               onclick='location.href="/consumer-expenses-manually/"' class="button_red">
+        </div>
+    </div>
+    </div>
+</body>
+</html>

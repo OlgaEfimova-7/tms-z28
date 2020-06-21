@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'main_page.css' %}"  >
+</head>
+  <body>
+       <div class="rectangle"></div>
+       <div class="picture">
+           <img src="{% static "/Images/photodraw.ru-59552.png" %}"
+                 alt="Main" width="100%" height="100%" class="main_picture">
+            <img src="{% static "/Images/iconfinder_19-Database_2907926-2.png" %}" alt="logo" class="logo">
+           <div class="name_of_app">Personal finance <br> management and analytics</div>
+       </div><div class="rectangle"></div>
+       <h1>
+           Personal finance management and analytics:
+       </h1>
+           	<h2>-	приложение по управлению и контролю за собственными расходами;</h2>
+            <h2>-   приложение, содержащее результаты исследования и анализа данных</h2>
+            <h2>о совершаемых покупках (расходах) клиентов.</h2>
+       <div class="child1_main">
+           <div>
+               <picture>
+                   <img src="{% static "/Images/scott-graham-5fNmWej4tAA-unsplash.jpg" %}"
+                     alt="For business" width="500">
+               </picture>
+               <div class="shape">
+                   Для бизнес-клиентов
+               </div>
+               <form action = "/result" method = "GET">
+               <div class="child2_main"><input type="button" value="Вход"
+                                               onclick='location.href="/business-statistics"'></div>
+               <div class="child2_main"><input type="button" value="Регистрация"
+                                               onclick='location.href="/registration-for-business"'></div>
+               </form>
+{#                   <h4><a href = /registration-for-business>Зарегистрироваиться</a></h4></form>#}
+           </div>
+       </div>
+       <div class="child1_main">
+           <div>
+               <picture>
+                   <img src="{% static "/Images/artem-beliaikin-e--geRd5eCQ-unsplash.jpg" %}"
+                     alt="For business" width="500">
+               </picture>
+               <div class="shape">
+                   Для клиентов
+               </div>
+               <form action = "/result" method = "GET">
+                   <div class="child2_main"> <input type="button" value="Вход"
+                                                    onclick='location.href="/log-in"'></div>
+                   <div class="child2_main"> <input type="button" value="Регистраци"
+                                                    onclick='location.href="/registration-for-consumer"'></div>
+{#                   <h4><a href = /registration-for-consumer>Зарегистрироваиться</a></h4>#}
+               </form>
+           </div>
+       </div>
+{#       <form action = "/result" method = "GET">#}
+{#           <input type="button" value="For business" onclick='location.href="/business-statistics"'>#}
+{#           <h4><a href = /registration-for-business>Зарегистрироваиться</a></h4>#}
+{#           <input type="button" value="For consumers" onclick='location.href="/consumer-statistics"'>#}
+{#           <h4><a href = /registration-for-consumer>Зарегистрироваиться</a></h4>#}
+{##}
+{#       </form>#}
+  </body>
+</html>

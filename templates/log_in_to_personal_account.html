@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'login_page.css' %}"  >
+    <script src="{% static 'form_for_validation_of_cheque.js' %}"></script>
+</head>
+    <body>
+        <div class="rectangle">
+            <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+            <div class="name_of_app">Personal finance <br> management and analytics</div>
+        </div>
+        <img src="{% static "/Images/iconfinder_profile_3018530.png" %}" alt="icon_logo" class="icon_logo">
+        <form method="post" >
+            {% csrf_token %}
+            <div class="form">
+                <div class="message ">
+                    {{ message }}
+                </div>
+                {{ form.as_p }}
+            </div>
+            <div class="button">
+               <input type="submit" value="Войти">
+            </div>
+        </form>
+    </body>
+{#action="/log-in-success/"#}

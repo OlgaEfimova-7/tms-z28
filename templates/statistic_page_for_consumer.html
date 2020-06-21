@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{#{% load bootstrap4 %}#}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'statistic_page_for_consumers.css' %}"  >
+    <title>Статистика расходов</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'statistic_page_for_consumers.js'%}"></script>
+    <script src="{% static 'function_of_get_chosen_value_from_list.js'%}"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+  <body>
+  <div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a href="/consumer-expenses/">Загрузка чека</a>
+            <a href="/consumer-expenses-manually/">Запись расходов</a>
+            <a class="active" href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+</div>
+  <script>
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(drawVisualization);
+            function drawVisualization() {
+                var djangodata = {{ djangodict_structure| safe }};
+                var list_of_lists = [];
+                var Header = ['Статья', 'Расходы'];
+                list_of_lists.push(Header);
+                for (var i = 0; i< djangodata.length; i++){
+                    var list_of_one_position = [];
+                    list_of_one_position.push(djangodata[i]['subtype_id__item_id__item']);
+                    list_of_one_position.push(parseFloat(djangodata[i]['costs']))   ;
+                    list_of_lists.push(list_of_one_position)
+                    }
+                var data = google.visualization.arrayToDataTable(list_of_lists);
+                var options = {
+                    title: 'Структура расходов за'+' '+djangodata[0]['period'],
+                    pieHole: 0.5,
+                    colors: ['#4e505f', '#66809c', '#adbd37', '#588133', '#ffad60'],
+                    fontName: 'Roboto Light',
+                    legendTextStyle: { color: '#555555' },
+                    titleTextStyle: { color: '#555555', fontSize: '25'},
+                    fontSize: '14',
+                    pieResidueSliceLabel: 'Остальное',
+                    width: 550,
+                    height: 300,
+                    chartArea: {width: 500, left: 30, height: 230, top: 70},
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('expenditure_structure'));
+                 chart.draw(data, options);
+               }
+    </script>
+  <script>
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawVisualization);
+        function drawVisualization() {
+            djangodata_for_first_chart = {{ djangodict_structure_last_period| safe }}
+            djangodata_for_second_chart = {{ djangodict_structure| safe }};
+            var list_of_lists = [];
+            var Header = ['период','продукты питания', 'одежда, обувь, аксессуары', 'транспортные расходы', 'коммунальные платежи, ремонт, связь, интернет',
+                'бытовая химия, товары для дома', 'развлечения и досуг', 'путешествия', 'хобби', 'образование',
+                'красота и здоровье', 'прочее', 'мебель, сантехника', 'другая техника'];
+            list_of_lists.push(Header);
+            var list_of_first_position = [];
+            list_of_first_position.push(djangodata_for_first_chart[0]['period'].toString());
+            for (var j = 1; j < Header.length; j++) {
+                for (var i = 0; i < djangodata_for_first_chart.length; i++) {
+                     if (djangodata_for_first_chart[i]['subtype_id__item_id__item'] == Header[j]){
+                         list_of_first_position.push(parseFloat(djangodata_for_first_chart[i]['costs']))
+                     }
+                 }
+                if (list_of_first_position.length-(j-1)<2){
+                    list_of_first_position.push(0)
+                }
+             }
+            list_of_lists.push(list_of_first_position);
+            var list_of_second_position = [];
+            list_of_second_position.push(djangodata_for_second_chart[0]['period'].toString());
+            for (var j = 1; j < Header.length; j++) {
+                for (var i = 0; i < djangodata_for_second_chart.length; i++) {
+                     if (djangodata_for_second_chart[i]['subtype_id__item_id__item'] == Header[j]){
+                         list_of_second_position.push(parseFloat(djangodata_for_second_chart[i]['costs']))
+                     }
+                 }
+                if (list_of_second_position.length-(j-1)<2){
+                    list_of_second_position.push(0)
+                }
+             }
+            list_of_lists.push(list_of_second_position);
+            var data = google.visualization.arrayToDataTable(list_of_lists);
+            {#  ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',#}
+            {# 'Western', 'Literature', { role: 'annotation' } ],#}
+            {#['2020', 16, 22, 13, 30, 10, 9, ''],#}
+            {#['2030', 18, 19, 19, 20, 11, 13, '']#}
+          var options = {
+              title: 'Сопоставление структуры расходов',
+              bar: { groupWidth: '75%' },
+              isStacked: true,
+              fontName: 'Roboto Light',
+              legendTextStyle: { color: '#555555' },
+              titleTextStyle: { color: '#555555', fontSize: '25'},
+              fontSize: '14',
+              colors:['#4e505f', '#66809c', '#adbd37', '#588133', '#947B89', '#AEB8C3'],
+              width: 550,
+              height: 350,
+              chartArea: {width: 430, left: 120},
+          };
+          var chart = new google.visualization.ColumnChart(document.getElementById('comparison_of_expenditure_structure'));
+            chart.draw(data, options);
+        }
+    </script>
+  <script>
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawVisualization);
+        function drawVisualization() {
+            var djangodata = {{ djangodict_periods| safe }};
+            var list_of_lists = [];
+            var Header = ['Период', 'Расходы'];
+            list_of_lists.push(Header);
+            for (var i = 0; i < djangodata.length; i++) {
+                var list_of_one_position = [];
+                list_of_one_position.push(djangodata[i]['period'].toString());
+                list_of_one_position.push(parseFloat(djangodata[i]['costs']));
+                list_of_lists.push(list_of_one_position)
+            };
+            var data = google.visualization.arrayToDataTable(list_of_lists);
+            var options = {
+                title: 'Динамика расходов',
+                pieHole: 0.4,
+                colors: ['#4e505f'],
+                fontName: 'Roboto Light',
+                legendTextStyle: { color: '#555555' },
+                titleTextStyle: { color: '#555555', fontSize: '25'},
+                fontSize: '14',
+                pieResidueSliceLabel: 'Остальное',
+                annotations: {alwaysOutside: true},
+                series: {color: '#CF0980', visibleInLegend: true},
+                width: 1150,
+                height: 330,
+                chartArea: {width: 1100, left: 50},
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('expenditure_dynamics'));
+            chart.draw(data, options);}
+  </script>
+  <div class="parent">
+      <div class="child1">
+          <div class="subchild">
+            <div id="expenditure_structure"></div>
+          </div>
+          <div class="subchild1">
+              <div class="subchild2">
+                  <button onclick="functionStructure(period='years')" class="buttons_grey">
+                      текущий год</button>
+                  <button onclick="functionStructure(period='months')" class="buttons_grey">
+                      текущий месяц</button>
+                  <button onclick="functionStructure(period='days')" class="buttons_grey">
+                      текущий день</button>
+              </div>
+          </div>
+      </div>
+      <div class="child1">
+          <div class="subchild">
+            <div id="comparison_of_expenditure_structure"></div>
+          </div>
+{#      </div>#}
+{#      <div class="child1">#}
+          <div class="subchild">
+              <div class="subchild2">
+                  <div class="information">
+                      <ul>
+                           <li><label for="year_1">год</label></li>
+                           <li><label for="month_1">месяц</label></li>
+                           <li><label for="day_1">день</label></li>
+                      </ul>
+                  </div>
+                  <div class="information">
+                      <ul>
+                          <li><select id="year_1" onmousedown="this.value='';" onchange="first_period=this.value;"
+                                  class="information_fields">
+                              {% for i in set_of_years %}
+                                  <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                          <li><select id="month_1" onmousedown="this.value='';" onchange="first_period=this.value;"
+                                  class="information_fields">
+                              {% for i in set_of_months_years %}
+                                  <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                          <li><select id="day_1" onmousedown="this.value='';" onchange="first_period=this.value;"
+                                  class="information_fields">
+                              {% for i in set_of_days_months_years %}
+                                  <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                      </ul>
+                  </div>
+              </div>
+{#          </div>#}
+{#      </div>#}
+{#      <div class="child2">#}
+{#          <div class="subchild">#}
+              <div class="subchild2">
+                  <div class="information">
+                      <ul>
+                          <li><label for="year_2">год</label></li>
+                          <li><label for="month_2">месяц</label></li>
+                          <li><label for="day_2">день</label></li>
+                      </ul>
+                  </div>
+                  <div class="information">
+                      <ul>
+                          <li><select id="year_2" onmousedown="this.value='';" onchange="second_period=this.value;"
+                                    class="information_fields">
+                              {% for i in set_of_years %}
+                                  <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                          <li><select id="month_2" onmousedown="this.value='';" onchange="second_period=this.value;"
+                                      class="information_fields">
+                              {% for i in set_of_months_years %}
+                                      <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                          <li><select id="day_2" onmousedown="this.value='';" onchange="second_period=this.value;"
+                                  class="information_fields">
+                              {% for i in set_of_days_months_years %}
+                                  <option value={{ i }}>{{ i }}</option>
+                              {% endfor %}
+                          </select></li>
+                      </ul>
+                  </div>
+                  <div>
+                      <button onclick="jsFunctionForPeriod(first_period, second_period)" class="buttons_grey">
+                          Показать</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="child2">
+          <div class="subchild">
+              <div id="expenditure_dynamics"></div>
+          </div>
+          <div class="subchild">
+              <div class="subchild2">
+                  <div><button onclick="functionDynamics(period='years')" class="buttons_grey">года</button></div>
+                  <div><button onclick="functionDynamics(period='months')" class="buttons_grey">месяцы</button></div>
+                  <div><button onclick="functionDynamics(period='days')" class="buttons_grey">дни</button></div>
+              </div>
+          </div>
+      </div>
+
+{#      <div class="child2">#}
+{#          <div id="table_expenditure" ></div>#}
+{#      </div>#}
+  </div>
+  </body>
+</html>

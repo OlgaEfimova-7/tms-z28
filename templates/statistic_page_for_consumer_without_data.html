@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{#{% load bootstrap4 %}#}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'statistic_page_for_consumers.css' %}"  >
+    <title>Статистика расходов</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'statistic_page_for_consumers.js'%}"></script>
+    <script src="{% static 'function_of_get_chosen_value_from_list.js'%}"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+  <div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a href="/consumer-expenses/">Загрузка чека</a>
+            <a href="/consumer-expenses-manually/">Запись расходов</a>
+            <a class="active" href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+    </div>
+    <h4>Данные о расходах не загружены!</h4>
+</body>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Запись расходов</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'writing_of_expenses.css' %}"  >
+    <script src="{% static 'subexpenditure.js' %}"></script>
+</head>
+<body>
+<div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a href="/consumer-expenses/">Загрузка чека</a>
+            <a class="active" href="/consumer-expenses-manually/">Запись расходов</a>
+            <a href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+</div>
+<div class="form">
+        <h3>Внесите расходы</h3>
+    </div>
+<form method="post" name="expenditure">
+<div class="form">
+     <ul>
+     <li>
+        <label for="date_time">Время и дата покупки</label>
+        <input id=date_time name="date_time" type="datetime-local" required class="field">
+     </li>
+     <li>
+        <label for="institution">Наименование организации</label>
+        <input id=institution name="institution" type="text" required class="field">auth_user_groups
+     </li>
+     <li>
+        <label for="product_or_service">Наименование продукта либо услуги</label>
+        <input id=product_or_service name="product_or_service" type="text" required class="field">
+     </li>
+     <li>
+        <label for="price">Цена</label>
+        <input id=price name="price" type="number" placeholder="1.00" step="0.01" required class="field">
+     </li>
+     <li>
+        <label for="items_of_expenditure"> Статья расходов</label>
+        <input list="items_of_expenditure" name="items_of_expenditure" required class="field">
+        <datalist id="items_of_expenditure">
+                {% for item in list_of_items_of_expenditure %}
+                    <option value="{{ item }}"></option>
+                {% endfor %}
+     </datalist>
+     </li>
+     </ul>
+</div>
+<div class="button">
+     <input class="btn btn-danger btn-block"
+           type="submit" name="submit" value="Сохранить">
+</div>
+</form>
+</body>
+</html>

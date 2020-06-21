@@ -1,0 +1,68 @@
+.rectangle{
+    height: 60px;
+    width: 100%;
+    background-color: #555;
+}
+.picture {
+    position: relative;
+    text-align: center;
+    color: black;
+    font-size: 0;
+}
+.name_of_app{
+    position: absolute;
+    top: 50px;
+    left: 240px;
+    font-family: "Roboto Light", cursive;
+    font-size: 30px;
+    color: black;
+    opacity: 0.6;
+    text-align: left;
+}
+.logo{
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 200px;
+    opacity: 0.55;
+}
+.shape{
+    text-align:center;
+    background-color:#555;
+    width:500px;
+    line-height:60px;
+    color:white;
+    margin:20px 0px 20px 0px;
+    position:relative;
+    font-family: "Roboto Light", cursive;
+    font-size: 20px;
+}
+.child2_main{
+    display: inline-block;
+    margin: 0px 17px 100px 0px;
+}
+.child1_main{
+    display: inline-block; margin: 100px 20px 0px 130px; font-family: 'Roboto Light', cursive;
+    font-size: 15px; color: #555;
+}
+input[type='button']{
+    background-color: #555;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:0px;
+    color: #fff;
+    font-family: 'Roboto Light';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+    font-weight: lighter;
+    width: 240px;
+    /*border-bottom-color: #4e505f;*/
+
+}
+h1{
+    font-family: 'Roboto Light', cursive; font-size: 30px; color: #555; margin: 50px 0px 50px 0px;
+}
+h2 { font-family: 'Roboto Light', cursive; font-size: 25px; color: #555;
+    padding: 0px 130px; margin: 0px}

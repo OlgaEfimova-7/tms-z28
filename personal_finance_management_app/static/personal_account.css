@@ -1,0 +1,99 @@
+.rectangle{
+    height: 120px;
+    width: 100%;
+    background-color: #555;
+    position: relative;
+    text-align: center;
+    color: black;
+    font-size: 0;
+}
+.name_of_app{
+    position: absolute;
+    top: 20px;
+    left: 140px;
+    font-family: "Roboto Light", cursive;
+    font-size: 20px;
+    color: aliceblue;
+    opacity: 0.7;
+    text-align: left;
+}
+.logo{
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 100px;
+    opacity: 0.6;
+}
+.link_bar {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    opacity: 0.7;
+    text-align: left;
+}
+a {
+    color: white;
+    font-family: "Roboto Light", cursive;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+}
+.link_bar a:hover{
+    color: coral;
+    font-family: "Roboto Light", cursive;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+}
+.link_bar a.active{
+    color: coral;
+    font-family: "Roboto Light", cursive;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+}
+.icon_logo{
+    width: 100px;
+    opacity: 0.7;
+    margin: 10px 0 0 0;
+}
+.form {
+    font-family: "Roboto Light", cursive;
+    font-size: 35px;
+    color: #555;
+    width: 250px;
+}
+.statistic_img{
+    width: 350px;
+}
+.wallet_img{
+    width: 350px;
+}
+.child1{
+    display: inline-block;
+}
+.child2{
+    display: inline-block;
+    margin: 30px 100px 50px 200px;
+}
+.parent1{
+    width: auto;
+}
+.button_green{
+    background-color: darkgreen;
+    margin: 10px 0 0 0;
+    color: aliceblue;
+    font-family: 'Roboto Light', cursive;
+    font-size: 20px;
+    width: 350px;
+    text-align: center;
+}
+.button_red{
+    background-color: darkred;
+    margin: 10px 0 0 0;
+    color: aliceblue;
+    font-family: 'Roboto Light', cursive;
+    font-size: 20px;
+    width: 350px;
+    text-align: center;
+}

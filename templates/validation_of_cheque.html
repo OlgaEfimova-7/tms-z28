@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'writing_of_expenses.css' %}">
+    <script src="{% static 'form_for_validation_of_cheque.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+    import {isNumber} from "../venv/lib/python3.8/site-packages/jupyterlab/staging/yarn";
+
+  {#  function validateForm() {#}
+  {#      var x = document.forms["Validation_of_cheque"]["price"].value;#}
+  {#      if (x === null)#}
+        {#if (isInteger(x) === false) {#}
+        {#if (isNaN(x)) {#}
+  {#      alert("Name must be filled out");#}
+  {#      return false;#}
+  {#}#}
+}
+</script>
+</head>
+<body>
+<div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a class="active" href="/consumer-expenses/">Загрузка чека</a>
+            <a href="/consumer-expenses-manually/">Запись расходов</a>
+            <a href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+</div>
+<form name="Validation_of_cheque" method="post" action="/consumer-expenses-save/"
+      onsubmit="return validateForm()" required>
+    {% csrf_token %}
+<div class="button">
+    <h2>Информация о дате и месте покупок</h2>
+</div>
+<div class="form">
+    <div class="child">
+        <ul>
+            <li>
+                <label for="name_of_institution" class="information">Наименование юридического лица: </label>
+            </li>
+            <li>
+                <label for="time_and_date" class="information">Дата покупки: </label>
+            </li>
+        </ul>
+    </div>
+    <div class="child">
+        <ul>
+            <li>
+                <input id="name_of_institution" type="text" name="name_of_institution" value="{{ name_of_institution }}"
+                       class="information_fields" required><br>
+            </li>
+            <li>
+                <input id="time_and_date" type="datetime-local" name="time_and_date" value="{{ time_and_date }}"
+                       class="information_fields" required>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="button">
+    <h2>Позиции чека</h2>
+</div>
+<div class="form">
+    <div class="child">
+        {% for product in list_of_parsed_products %}
+            <ul>
+                <li>
+                    <input id="product" type="text" name="product" value="{{ product }}" class="position">
+                </li>
+            </ul>
+        {% endfor %}
+            <ul>
+                <li>
+                    <div id="dynamicInput1">
+{#                    <input type="text" name="myInputs[]">#}
+                    </div>
+                </li>
+            </ul>
+    </div>
+    <div class="child">
+        {% for price in list_of_prices %}
+            <ul>
+                <li>
+                    <input id="price" type="number" step="0.01" name="price" required="required"
+                           value="{{ price }}" class="price">
+                </li>
+            </ul>
+        {% endfor %}
+            <ul>
+                <li>
+                    <div id="dynamicInput2">
+{#                    <input type="text" name="myInputs[]">#}
+                    </div>
+                </li>
+            </ul>
+    </div>
+    <input type="button" value="Добавить позицию" onClick="addInput('dynamicInput1', 'position', 'product');
+    addInput('dynamicInput2', 'price', 'price');" class="buttons_grey">
+    <input type="button" value="Удалить позицию" onClick="removeInput('dynamicInput1');
+    removeInput('dynamicInput2');" class="buttons_grey">
+    <input type="hidden" name="institution_keyword" value="{{ institution_keyword }}">
+    {% for keyword in list_of_all_keywords_parsed_products %}
+    <input type="hidden" name="keyword" value="{{ keyword }}">
+    {% endfor %}
+</div>
+<div class="button">
+    <input class="button_red"
+           type="submit" name="submit" value="Сохранить">
+</div>
+</form>
+{#<div>#}
+{#<input type="text">#}
+{#<button onclick="add()">Add</button>#}
+{#<button onclick="remove()">remove</button>#}
+{#<div id="new_chq"></div>#}
+{##}
+{#<input type="hidden" value="1" id="total_chq">#}
+{#</div>#}
+
+
+
+{#{{ data_from_cheque }}#}
+{#<ul>#}
+{#    <li>#}
+{#        <label>#}
+{#        </label>#}
+{#    </li>#}
+{#</ul>#}
+{#<button onclick="add()">Add</button>#}
+{#<button onclick="remove()">remove</button>#}
+{#<div id="new_chq">#}
+{#    <ul>#}
+{#        <li></li>#}
+{#    </ul>#}
+{#</div>#}
+{#<input type="hidden" value="1" id="total_chq">#}
+</body>
+</html>

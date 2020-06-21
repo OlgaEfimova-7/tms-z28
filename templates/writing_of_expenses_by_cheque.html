@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка чека</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'writing_of_expenses.css' %}"  >
+</head>
+<body>
+<div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+        <div class="link_bar">
+            <a href="/">Главная страница</a>
+            <a href="/personal-account/">Личный кабинет</a>
+            <a class="active" href="/consumer-expenses/">Загрузка чека</a>
+            <a href="/consumer-expenses-manually/">Запись расходов</a>
+            <a href="/consumer-statistics/">Статистика расходов</a>
+        </div>
+</div>
+<div class="loading_of_chek">
+<form id="post_form" method="post" action="" enctype="multipart/form-data">
+    <div class="form">
+        {% csrf_token %}
+        <label for="field">Загрузите фото чека/ фото частей одного чека</label>
+        <div class="field" id="field">
+            {{ form.cheque}}
+        </div>
+    </div>
+    <div class="button">
+        <input class="button_red" type="submit" name="submit" value="Загрузить чек" />
+    </div>
+</form>
+</div>
+</body>
+</html>

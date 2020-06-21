@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'registration_page.css' %}"  >
+</head>
+<body>
+    <div class="rectangle">
+        <img src="{% static "/Images/photodraw.ru-23238.png" %}" alt="logo" class="logo">
+        <div class="name_of_app">Personal finance <br> management and analytics</div>
+    </div>
+    <div class="form">
+        <h3>Регистрационная форма</h3>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form">
+            <div class="message">
+                <p>{{ text_user_already_exists }}</p>
+            </div>
+            <div class="child">
+                <img src="{% static "/Images/iconfinder_users_4172317.png" %}" alt="registration" class="registration">
+            </div>
+            <div class="child">
+                <table>
+                    {{ form.as_table }}
+                </table>
+            </div>
+        </div>
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+</html>
