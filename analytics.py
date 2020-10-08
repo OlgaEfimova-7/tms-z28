@@ -3,7 +3,6 @@ import os
 import matplotlib.pyplot as plt
 from finnhub import FinnhubAPIException
 
-from db import get_stock_information_from_db
 from hash_and_coding import decoding_str
 from requests_of_inf_about_stock_market import get_current_value_of_stocks
 
@@ -56,28 +55,6 @@ def get_list_of_aggregated_companies_and_stocks(list_of_companies_and_stocks):
                         final_list.append(row)
                         break
     return final_list
-
-
-# def get_list_of_companies_and_actual_bought_stocks(list_of_all_bought_stocks_of_companies,
-#                                                    list_of_sold_companies_stocks):
-#     list_of_companies_which_stocks_sold = [i for i in list_of_sold_companies_stocks[0]]
-#     # list_of_all_companies = [i for i in list_of_all_bought_stocks_of_companies[0]]
-#     list_of_actual_bought_companies_stocks = []
-#     for i in list_of_all_bought_stocks_of_companies:
-#         company = i[0]
-#         if company not in list_of_companies_which_stocks_sold:
-#             list_of_actual_bought_companies_stocks.append(i)
-#         else:
-#             amount_of_all_bought_stocks = i[1]
-#             amount_of_sold_stocks = list_of_sold_companies_stocks[list_of_companies_which_stocks_sold.index(company)][0]
-#             actual_amount_of_bought_stocks = amount_of_all_bought_stocks - amount_of_sold_stocks
-#
-#         # list_of_actual_bought_stocks_of_one_company = []
-#         # sold_company_stocks = i[0]
-#         # list_of_all_bought_stocks_of_companies.index(sold_company_stocks)
-#     return
-
-
 
 
 def analyze_value_of_stocks(list_of_companies_and_stocks: list, list_of_sold_companies_stocks=[[0, 0, 0, 0, 0]]):
@@ -213,44 +190,3 @@ def draw_graphics(list_of_data_sets, list_of_companies, list_of_dates, chat_id):
     plt.savefig(f'graphics/graph_{chat_id}.png')
     plt.show()
 
-
-# list_from_db = get_stock_information_from_db(1)
-# # decoded_list = get_list_of_decoded_companies_and_stocks(list_from_db)
-# list_dec = [['EPAM', 2.0, 553.26, 'USD'], ['AAPL', 1.0, 375.05, 'USD'],
-#             ['MSFT', 2.0, 401.8, 'USD'], ['GOOGL', 1.0, 1508.13, 'USD'],
-#             ['MSFT', 2.0, 401.8, 'USD'], ['GOOGL', 1.0, 1508.13, 'USD'],
-#             ['DIS', 1.0, 127.79, 'USD']]
-# aggregated_list = get_list_of_aggregated_companies_and_stocks(list_dec)
-#
-# # print(list_from_db)
-# print(aggregated_list)
-
-
-#
-# list_1 = [1595894400, 1595980800, 1596067200, 1596153600, 1596412800, 1596499200, 1596585600, 1596672000, 1596758400,
-#           1597017600, 1597104000, 1597190400, 1597276800, 1597411800]
-# list_2 = [1595894400, 1595980800, 1596067200, 1596153600, 1596412800, 1596499200, 1596585600, 1596672000]
-# common_list_of_date = [list_1, list_2]
-# list_3 = [372.3387, 379.4758, 384.0675, 424.275, 434.9658, 437.8705, 439.4576, 454.79, 444.45, 450.91, 437.5,
-#           452.04, 460.04, 459.63]
-# list_4 = [1503.65, 1523.51, 1538.37, 1487.95, 1482.76, 1473.3, 1479.09, 1504.95]
-# common_list_of_data = [list_3, list_4]
-# print(create_set_of_data_subject_to_no_data_for_some_dates(common_list_of_data, common_list_of_date, list_1))
-
-
-# dates = ["01/02/2020", "01/03/2020", "01/04/2020"]
-# x_values = [datetime.strptime(d, "%m/%d/%Y").date() for d in dates]
-# print(x_values)
-# y_values = [1, 2, 3]
-
-# list_of_date = create_list_of_dates_between_start_and_final_date_without_vacations('2020-06-30', '2020-07-03')
-# print(list_of_date)
-# draw_graphics([[1, 2, 3], [3, 4, 5]], ['AAPL', 'EPAM'], list_of_date)
-# set = get_set_of_stock_prices('2020-07-01', '2020-08-01', 'AAPL', 'D')['c']
-# information_from_db = get_stock_information_about_specific_company(1, 'AAPL')
-# print(information_from_db)
-# initial_value_of_stocks = information_from_db[0][2]
-# amount_of_stocks = information_from_db[0][1]
-# list_of_delta_of_stock_prices = calculate_set_of_stock_price_delta(initial_value_of_stocks, amount_of_stocks, set)
-# draw_graphics((list_of_delta_of_stock_prices, 'AAPL'))
-# print(analyze_value_of_stocks(get_stock_information_from_db(1)))

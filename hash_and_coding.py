@@ -20,6 +20,3 @@ def hash_str(string):
     hash_object = hashlib.sha256(string_to_bytes)
     hex_dig = hash_object.hexdigest()
     return hex_dig
-
-
-# print(hash_str('Olga'))

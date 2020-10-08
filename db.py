@@ -1,5 +1,4 @@
 import sqlite3
-from hash_and_coding import decoding_str
 __connection = None
 
 
@@ -150,8 +149,6 @@ def get_sold_stock_information_about_specific_company(user_id, company):
     global __connection
     __connection = None
     return res
-
-# print(get_user('988'))
 
 
 if __name__ == '__main__':

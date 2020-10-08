@@ -33,9 +33,3 @@ def is_second_date_bigger_then_first(first_date, second_date):
     first_date_datetime = convert_string_date_to_datetime(first_date)
     second_date_datetime = convert_string_date_to_datetime(second_date)
     return second_date_datetime >= first_date_datetime
-
-# print(convert_UTC_to_local_time(1595894400))
-# list_1 = [1595894400, 1595980800, 1596067200, 1596153600, 1596412800, 1596499200, 1596585600, 1596672000, 1596758400,
-#           1597017600, 1597104000, 1597190400, 1597276800, 1597411800]
-
-# print(is_second_date_bigger_then_first('2020-07-02', '2020-07-01'))

@@ -14,11 +14,11 @@ from db import add_stock_information, add_user, get_user, change_frequency, get_
     , get_frequency_and_chat_id, get_stock_information_about_specific_company, add_sold_stock_information, \
     get_sold_stock_information_from_db, get_sold_stock_information_about_specific_company
 from functions_datetime import convert_UTC_to_local_time, is_second_date_bigger_then_first
-from hash_and_coding import hash_str, coding_str, decoding_str
+from hash_and_coding import coding_str, decoding_str
 from requests_of_inf_about_stock_market import get_stock_information, get_set_of_stock_prices
 
-# telegram_token = '1393374775:AAH6b43YH3auiddeq8-dTc9yR39r5tX2qSI'
-telegram_token = '1346541942:AAHMvmZqSQ0V9OXIDMhJeBT1P3CTtxdFEec'
+
+telegram_token = 'my_token'
 telegram_bot = telebot.TeleBot(telegram_token)
 welcome_text_message = 'Привет, меня зовут StockBot. Я помогу тебе следить за стоимостью твоих акций.Одно условие - ' \
                'акции Американских компаний\n\n'
@@ -401,26 +401,6 @@ def get_graphic_of_stock_delta(message):
         telegram_bot.send_photo(message.chat.id, photo=open(f'graphics/graph_{message.chat.id}.png', 'rb'))
 
 
-
-    # companies = list_of_information_for_validation_without_spaces[3].split(',')
-    # validation_of_information_for_getting_graphic(start_date, finish_date, period_of_aggregation, companies)
-
-
-
-# def send_message_in_specific_time():
-#     now = datetime.now()
-#     list_of_chat_id_and_frequencies = get_frequency_and_chat_id()
-#     for index_i, i in enumerate(list_of_chat_id_and_frequencies):
-#         if i[1] == 1:
-#             time_to_send = datetime.strptime('16:35:00', '%H:%M:%S') + timedelta(minutes=index_i)
-#             if now.hour == time_to_send.hour and now.minute == time_to_send.minute:
-#                 send_information(i[0])
-#         elif i[1] == 2:
-#             pass
-#         else:
-#             pass
-
-
 def do_schedule():
     list_of_chat_id_and_frequencies = get_frequency_and_chat_id()
     for index_user_information, user_information in enumerate(list_of_chat_id_and_frequencies):
@@ -452,8 +432,6 @@ def main_loop():
 
 if __name__ == '__main__':
     main_loop()
-    # schedule.every(10).seconds.do(send_information, 393149361)
-    # telegram_bot.polling()
 
 
 
